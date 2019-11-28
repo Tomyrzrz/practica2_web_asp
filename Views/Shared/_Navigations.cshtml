@@ -1,0 +1,114 @@
+﻿<script src="~/Content/js/JQuery.js"></script>
+<script src="~/Content/js/firebaseapp.js"></script>
+
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBE9cC4lX5ZJyTD-5JknE3vXzrNl_fosf8",
+        authDomain: "timo7apractica1.firebaseapp.com",
+        databaseURL: "https://timo7apractica1.firebaseio.com",
+        projectId: "timo7apractica1",
+        storageBucket: "timo7apractica1.appspot.com",
+        messagingSenderId: "520452106339",
+        appId: "1:520452106339:web:461189334699a91b9c7056"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
+<script src="~/Content/js/firebaseauth.js"></script>
+<script src="~/Content/js/firebasedb.js"></script>
+<script src="~/Content/js/funcionesbd.js"></script>
+
+<script>
+
+    window.onload = function () {
+        observador();
+    }
+
+    function observador() {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                var email = user.email;
+                var id = user.uid;
+                console.log(email + id);
+                document.getElementById('logout').style.display = 'inline';
+                document.getElementById('nombre_user').style.display = 'inline';
+                document.getElementById('nombre_user').innerHTML = "Welcome: " + email;
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('#logout').click(function () {
+            salir();
+        });
+    });
+
+</script>
+
+
+
+<div class="top-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-5 col1">
+                <h5>ww.jumpertheme.com</h5>
+            </div>
+            <div class="col-sm-6 col-7 col2">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                        <a href="#"><i id="nombre_user"></i></a>
+                        <a href="#"><i class="btn btn-info btn-group-sm" id="logout">LogOut</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Navigation -->
+<nav id="myHeader" class="header navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="@Url.Content("~/Content/images/logo.png")" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    @Html.ActionLink("Inicio", "Index", "Home", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Servicios", "Services", "Home", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Portafolio", "Portfolio", "Home", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Blog", "Blog", "Home", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Contacto", "Contact", "Home", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Acerca de", "About", "Home", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Login", "Login", "Home", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("LogUp", "Logup", "Home", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Consulta", "ConsultaUsers", "Home", new { @class = "nav-link" })
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
